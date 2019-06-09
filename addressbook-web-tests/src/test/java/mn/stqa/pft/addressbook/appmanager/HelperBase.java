@@ -14,6 +14,7 @@ public class HelperBase {
   }
 
   public void type(By locator, String text) {
+    wd.findElement(locator).clear();
     wd.findElement(locator).sendKeys(text);
   }
 
