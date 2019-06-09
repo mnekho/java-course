@@ -3,46 +3,45 @@ package mn.stqa.pft.addressbook.appmanager;
 import mn.stqa.pft.addressbook.model.ContactData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.support.ui.Select;
 
-public class ContactHelper {
-  private FirefoxDriver wd;
+public class ContactHelper extends HelperBase {
 
   public ContactHelper(FirefoxDriver wd) {
-    this.wd = wd;
+    super(wd);
   }
 
   public void fillContactForm(ContactData contactData) {
-    wd.findElement(By.name("firstname")).sendKeys(contactData.getFirstname());
-    wd.findElement(By.name("middlename")).sendKeys(contactData.getMiddlename());
-    wd.findElement(By.name("lastname")).sendKeys(contactData.getLastname());
-    wd.findElement(By.name("address")).sendKeys(contactData.getAddress());
-    wd.findElement(By.name("title")).sendKeys(contactData.getTitle());
-    wd.findElement(By.name("company")).sendKeys(contactData.getCompany());
-    wd.findElement(By.name("home")).sendKeys(contactData.getHome_phone());
-    wd.findElement(By.name("mobile")).sendKeys(contactData.getMobile_phone());
-    wd.findElement(By.name("work")).sendKeys(contactData.getWork_phone());
-    wd.findElement(By.name("fax")).sendKeys(contactData.getFax());
-    wd.findElement(By.name("email")).sendKeys(contactData.getEmail());
-    wd.findElement(By.name("email2")).sendKeys(contactData.getEmail2());
-    wd.findElement(By.name("email3")).sendKeys(contactData.getEmail3());
-    wd.findElement(By.name("address2")).sendKeys(contactData.getAddress2());
-    wd.findElement(By.name("phone2")).sendKeys(contactData.getPhone2());
-    wd.findElement(By.name("notes")).sendKeys(contactData.getNotes());
-    new Select(wd.findElement(By.name("bday"))).selectByVisibleText(contactData.getDay());
-    new Select(wd.findElement(By.name("bmonth"))).selectByVisibleText(contactData.getMonth());
-    wd.findElement(By.name("byear")).sendKeys(contactData.getYear());
+    type(By.name("firstname"), contactData.getFirstname());
+    type(By.name("middlename"), contactData.getMiddlename());
+    type(By.name("lastname"), contactData.getLastname());
+    type(By.name("address"), contactData.getAddress());
+    type(By.name("title"), contactData.getTitle());
+    type(By.name("company"), contactData.getCompany());
+    type(By.name("home"), contactData.getHome_phone());
+    type(By.name("mobile"), contactData.getMobile_phone());
+    type(By.name("work"), contactData.getWork_phone());
+    type(By.name("fax"), contactData.getFax());
+    type(By.name("email"), contactData.getEmail());
+    type(By.name("email2"), contactData.getEmail2());
+    type(By.name("email3"), contactData.getEmail3());
+    type(By.name("address2"), contactData.getAddress2());
+    type(By.name("phone2"), contactData.getPhone2());
+    type(By.name("notes"), contactData.getNotes());
+    select(By.name("bday"), contactData.getDay());
+    select(By.name("bmonth"), contactData.getMonth());
+    type(By.name("byear"), contactData.getYear());
   }
 
+
   public void submitContactCreation() {
-    wd.findElement(By.xpath("(//input[@name='submit'])[2]")).click();
+    click(By.xpath("(//input[@name='submit'])[2]"));
   }
 
   public void returnToHomePage() {
-    wd.findElement(By.linkText("home page")).click();
+    click(By.linkText("home page"));
   }
 
   public void initContactCreation() {
-    wd.findElement(By.linkText("add new")).click();
+    click(By.linkText("add new"));
   }
 }
