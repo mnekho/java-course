@@ -11,7 +11,7 @@ public class ContactCreationTests extends TestBase {
     app.initContactCreation();
     app.fillContactForm(new ContactData("Boris", "C.", "Andreev", "644111, Russian Federation, Omsk, Lenina st., 2", "", "", "111-1111", "", "", "", "b@a.com", "", "", "", "", "", "1", "January", "1990"));
     app.submitContactCreation();
-    app.goToHomePage();
+    app.returnToHomePage();
   }
 
 
