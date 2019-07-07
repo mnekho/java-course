@@ -1,7 +1,6 @@
 package mn.stqa.pft.addressbook.tests;
 
 import mn.stqa.pft.addressbook.model.ContactData;
-import mn.stqa.pft.addressbook.model.GroupData;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
