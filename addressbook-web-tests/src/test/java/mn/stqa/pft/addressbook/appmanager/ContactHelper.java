@@ -52,8 +52,9 @@ public class ContactHelper extends HelperBase {
     wd.switchTo().alert().accept();
   }
 
-  public void initContactModification() {
-    click(By.xpath("//img[@alt='Edit']"));
+  public void initContactModification(int index) {
+    //click(By.xpath("//img[@alt='Edit']"));
+    click(By.xpath("(//img[@alt='Edit'])[" + index + "]"));
   }
 
   public void submitContactModification() {
@@ -74,7 +75,7 @@ public class ContactHelper extends HelperBase {
   public List<ContactData> getContactList() {
     List<ContactData> groups = new ArrayList<ContactData>();
     List<WebElement> elements = wd.findElements(By.name("entry"));
-    int tr = 2;
+    /*int tr = 2;
     for (WebElement element : elements) {
       String firstname = element.findElement(By.xpath("//tr["+ tr + "]/td[3]")).getText();
       String lastname = element.findElement(By.xpath("//tr["+ tr + "]/td[2]")).getText();
@@ -82,6 +83,14 @@ public class ContactHelper extends HelperBase {
       ContactData group = new ContactData(id, firstname, lastname);
       groups.add(group);
       tr++;
+    }*/
+    for (WebElement element : elements) {
+      List<WebElement> cells = element.findElements(By.tagName("td"));
+      String firstname = cells.get(2).getText();
+      String lastname = cells.get(1).getText();
+      int id = Integer.parseInt(element.findElement(By.name("selected[]")).getAttribute("value"));
+      ContactData group = new ContactData(id, firstname, lastname);
+      groups.add(group);
     }
     return groups;
   }
